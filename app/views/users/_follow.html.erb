@@ -1,3 +1,4 @@
+<% if users.exists? %>
 <table class='table'>
   <thead>
     <tr>
@@ -13,21 +14,11 @@
         <td><%= user.name %></td>
         <td>フォロー数:<%= user.following_user.count %></td>
         <td>フォロワー数:<%= user.follower_user.count %></td>
-        <td>
-          <% if user != current_user %>
-            <% if user.following?(current_user) %>
-              <%= link_to user_relationships_path(user), method: :delete do%>
-                フォロー外す
-              <% end %>
-            <% else %>
-              <%= link_to user_relationships_path(user), method: :post do%>
-                フォローする
-              <% end %>
-            <% end %>
-          <% end %>
-        </td>
         <td><%= link_to 'Show', user %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
+<% else %>
+  <p>ユーザーはいません</p>
+<% end %>

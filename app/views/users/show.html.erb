@@ -7,7 +7,7 @@
         <% if @user != current_user %>
           <% if @user.following?(current_user) %>
             <%= link_to user_relationships_path(@user), method: :delete do%>
-              <botton class="btn btn-primary">フォローを外す</botton>
+              <botton class="btn btn-primary">フォロー外す</botton>
             <% end %>
           <% else %>
             <%= link_to user_relationships_path(@user), method: :post do%>
