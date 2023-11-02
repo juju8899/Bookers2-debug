@@ -3,9 +3,19 @@
     <div class='col-md-3'>
       <h2>User info</h2>
       <%= render 'info', user: @user %>
-      <%= link_to user_relationships_path(@user), method: :post do%>
-        <botton class="btn btn-">フォローする</botton>
-      <% end %>
+      <div class="row mt-3">
+        <% if @user != current_user %>
+          <% if @user.following?(current_user) %>
+            <%= link_to user_relationships_path(@user), method: :delete do%>
+              <botton class="btn btn-primary">フォローを外す</botton>
+            <% end %>
+          <% else %>
+            <%= link_to user_relationships_path(@user), method: :post do%>
+              <botton class="btn btn-success">フォローする</botton>
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
       <h2 class="mt-3">New book</h2>
       <%= render 'books/form', book: @book %>
     </div>
